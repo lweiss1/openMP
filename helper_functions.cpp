@@ -22,16 +22,21 @@ int rand_num(int lower_bound, int upper_bound) {
 	return num;
 }
 
-string rand_string(int length) {
+string rand_string(int _length) {
 	int num,i;
-	char* str;
+	//char str;
 	string result;
-	str = new char[length];
-	for (i=0; i<length; i++) {
-		num = rand_num(ASCII_A,ASCII_Z);
-		str[i] = num;
+	char temp[2];
+	//str = new char[length+1];
+	for (i=0; i<_length; i++) {
+		temp[0] = (char)rand_num(ASCII_A,ASCII_Z);
+		temp[1] = '\0';
+		//cout << "c:" << temp[0] << "\n";
+		result.append(temp);
 	}
-	result = str;
-	delete(str);
+	//result = "lior";
+	//str[length] = "\0";
+	//result = str;
+	//delete(str);
 	return result;
 }

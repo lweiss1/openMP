@@ -31,10 +31,10 @@ GeneralAttribute* GeneralAttributes::get_rand_attribute() {
 	return &m_vec[rand_index];
 }
 
-vector<GeneralAttribute>* GeneralAttributes::get_general_attributes_vector(int num_of_att) {
-	vector<GeneralAttribute>* new_vec;
+vector<GeneralAttribute> GeneralAttributes::get_general_attributes_vector(int num_of_att) {
+	vector<GeneralAttribute> new_vec;
 	int i, j, begin_idx, end_idx, vec_size, overlap_flag = 0;
-	new_vec->reserve(num_of_att);
+	new_vec.reserve(num_of_att);
 	fill_n(m_pos_arr, R1, 0);
 
 	for (i=0; i < num_of_att; i++) {
@@ -45,9 +45,9 @@ vector<GeneralAttribute>* GeneralAttributes::get_general_attributes_vector(int n
         } else {
             begin_idx = temp->m_position;
             end_idx = begin_idx + temp->m_length;
-            vec_size = new_vec->size();
+            vec_size = new_vec.size();
             for (j=0; j<vec_size; j++) {
-                if (validate_intersection(temp, &(new_vec->at(2)))) {
+                if (validate_intersection(temp, &(new_vec[2]))) {
                     overlap_flag = 1;
                     break;
                 }
@@ -56,14 +56,17 @@ vector<GeneralAttribute>* GeneralAttributes::get_general_attributes_vector(int n
                 i--;
                 continue;
             }
-            new_vec->push_back(*temp);
+            new_vec.push_back(*temp);
             m_pos_arr[temp->m_position] = 1;
         }
 
 	}
 
-
-
+    sort(new_vec.begin(), new_vec.end());
+    for (i=0; i<new_vec.size(); i++) {
+        cout << new_vec[i].m_position << "\n";
+    }
+    return new_vec;
 }
 
 int GeneralAttributes::validate_intersection(GeneralAttribute* src_att, GeneralAttribute* ref_att) {

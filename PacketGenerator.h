@@ -6,7 +6,7 @@
 #include <random>
 //#include "Packets.h"
 //#include "Rules.h"
-//#include "GeneralAttributes.h"
+#include "GeneralAttributes.h"
 #include "FixedAttributes.h"
 
 using namespace std;
@@ -16,6 +16,7 @@ class PacketGenerator {
 		static PacketGenerator* Instance(); // Get single instance of this class
 		void test();
 		FixedAttributes F;
+		GeneralAttributes G;
 		//Packets P;
 	private:
 		PacketGenerator(){}; // Private constructor - this is a singleton class

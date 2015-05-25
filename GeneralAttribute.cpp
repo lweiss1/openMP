@@ -10,8 +10,7 @@ using namespace std;
 
 GeneralAttribute::GeneralAttribute() {
 	m_length = rand_num(ZA0, ZA1);
-	generateWord();
-	generatePosition();
+	m_word = "";
 }
 
 void GeneralAttribute::generateWord() {

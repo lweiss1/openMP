@@ -16,7 +16,7 @@ class GeneralAttributes {
 		GeneralAttributes();
 		~GeneralAttributes() { delete m_pos_arr; }
 		GeneralAttribute* get_rand_attribute();
-		vector<GeneralAttribute>* get_general_attributes_vector(int num_of_att);
+		vector<GeneralAttribute> get_general_attributes_vector(int num_of_att);
 		int validate_intersection(GeneralAttribute* src_att, GeneralAttribute* ref_att);
 
 
