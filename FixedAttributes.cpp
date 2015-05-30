@@ -12,9 +12,19 @@
 
 using namespace std;
 
+FixedAttributes* FixedAttributes::m_pInstance = NULL;
+
+FixedAttributes* FixedAttributes::Instance() {
+	if (!m_pInstance)
+		m_pInstance = new FixedAttributes;
+	return m_pInstance;
+}
+
 FixedAttributes::FixedAttributes() {
     int i, rand_index;
-    char str[5];
+    char str[NUM_OF_INDEXES];
+	
+	index_arr = new int [NUM_OF_INDEXES];
 
     // Initialize vectors
     m_att_vector.reserve(NUM_OF_INDEXES);
@@ -51,3 +61,29 @@ FixedAttribute* FixedAttributes::get_rand_attribute(const int index) {
     result = &(*m_att_vector[index])[rand_att_idx];
 	return result;
 }
+
+vector<FixedAttribute> FixedAttributes::get_fixed_att_vec(int length) {
+	int i, num;
+	vector<FixedAttribute> temp;
+	temp.reserve(length);
+	fill_n(index_arr, NUM_OF_INDEXES, 0);
+
+	for (i=0; i < length; i++) {
+		num = rand_att_idx();
+		if (index_arr[num]==1) {
+			i--;
+			continue;
+		}
+		if (m_att_vector[num]->size() == 0) {
+
+		}
+		index_arr[num] = 1;
+		temp.push_back(*get_rand_attribute(num));
+		//cout << temp[i].m_address << " " << temp[i].m_index << "\n";
+
+	}
+	return temp;
+
+}
+
+

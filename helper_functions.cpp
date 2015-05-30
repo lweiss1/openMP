@@ -12,8 +12,29 @@ int rand_att_idx() {
 	return rand()%4+1;
 }
 
+string rand_type(int type) {
+	// type = 0 for Rule type
+	// type = 1 for Packet type
+	string types;
+	int num;
+
+	if (type==0) {
+		types = "atuhs";
+		num = rand()%4;
+	} else {
+		types = "tuhs";
+		num = rand()%3;
+	}
+	string temp;
+	temp = types[num];
+	return temp;
+}
+
 int rand_num(int lower_bound, int upper_bound) {
 	int num,range;
+	if (lower_bound==upper_bound) {
+		return lower_bound;
+	}
 	num = rand()%upper_bound+1;
 	if (num<lower_bound) {
 		range = upper_bound - lower_bound;
